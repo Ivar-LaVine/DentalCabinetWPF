@@ -11,19 +11,25 @@
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="*" MinWidth="250"/>
             <ColumnDefinition Width="Auto"/>
-            <ColumnDefinition Width="250" MinWidth="250" />
+            <ColumnDefinition Width="250" MinWidth="250"/>
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
             <RowDefinition Height="30"/>
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
         <Rectangle Fill="LightBlue" Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="3"/>
-        <Label Content="Doctors" Grid.ColumnSpan="3" FontSize="16" />
+        <Label Content="Doctors" Grid.ColumnSpan="3" FontSize="16"/>
         <StackPanel x:Name="DataStackPanel" Grid.Row="1" Grid.RowSpan="2" Grid.Column="0" Grid.ColumnSpan="3">
-            <StackPanel Orientation="Horizontal" >
+            <StackPanel Orientation="Horizontal">
                 <Button x:Name="AddDoctorButton" Content="Add" Width="75" Margin="5,5" Click="AddDoctorButton_Click" />
                 <Button x:Name="EditDoctorButton" Content="Edit" Width="75" Margin="5,5" Click="EditDoctorButton_Click"/>
                 <Button x:Name="DeleteDoctorButton" Content="Delete" Width="75" Margin="5,5" Click="DeleteDoctorButton_Click"/>
+                <ComboBox Width="100" Margin="5,5" x:Name="SearchComboBox">
+                    <ComboBoxItem>Surname</ComboBoxItem>
+                    <ComboBoxItem>Name</ComboBoxItem>
+                    <ComboBoxItem>Patronymic</ComboBoxItem>
+                </ComboBox>
+                <TextBox Width="100" Margin="5,5" TextChanged="SearchTextBox_TextChanged" x:Name="SearchTextBox"></TextBox>
             </StackPanel>
             <DataGrid x:Name="DoctorsDataGrid" Grid.Row="2" Grid.Column="0"
                       HorizontalAlignment="Stretch" ItemsSource="{Binding}"

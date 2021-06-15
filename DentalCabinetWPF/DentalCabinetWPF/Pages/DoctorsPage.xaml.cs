@@ -120,5 +120,21 @@ namespace DentalCabinetWPF.Pages
                 }
             }
         }
+
+        private void SearchTextBox_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            string searchAttribute = "surname";
+            if (SearchComboBox.SelectedIndex == 0) searchAttribute = "surname";
+            if (SearchComboBox.SelectedIndex == 1) searchAttribute = "name";
+            if (SearchComboBox.SelectedIndex == 2) searchAttribute = "patronymic";
+            string s = "select d.doc_id, d.surname, d.name, d.patronymic, d.dob, d.phone, d.mail, d.reg_date, p.title as position " +
+               "from doctor d " +
+               "inner join position p on (d.pos_id = p.pos_id) where d." + searchAttribute + " like '%" + SearchTextBox.Text + "%'";
+            SqlDataAdapter SqlDataAdapter = new SqlDataAdapter(s, DatabaseSqlConnection);
+            DoctorsDataSet.Clear();
+            SqlDataAdapter.Fill(DoctorsDataSet);
+            DoctorsDataGrid.DataContext = DoctorsDataSet.Tables[0];
+            DoctorsDataGrid.SelectedValuePath = "doc_id";
+        }
     }
 }
